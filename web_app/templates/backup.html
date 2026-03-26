@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card"><h2>💾 数据备份</h2>
+    <form action="/do_backup" method="post"><button type="submit">立即备份</button></form>
+</div>
+
+<div class="card"><h2>📁 备份列表</h2>
+    <div class="table-wrapper">
+        <table><thead><tr><th>备份时间</th><th>文件名</th><th>操作</th></tr></thead><tbody>
+            {% for b in backups %}
+            <tr><td>{{ b.time }}</td><td>{{ b.file }}</td><td><a href="/restore/{{ b.file }}" class="btn btn-sm btn-outline" onclick="return confirm('恢复将覆盖当前数据，确定？')">恢复</a></td></tr>
+            {% else %}
+            <tr><td colspan="3" class="empty">📭 暂无备份</td></tr>
+            {% endfor %}
+        </tbody></table>
+    </div>
+</div>
+{% endblock %}

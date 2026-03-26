@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card">
+    <h2>✏️ 编辑图书</h2>
+    <form action="/update_book/{{ book.isbn }}" method="post" class="form-row" style="flex-direction:column; gap:0.8rem;">
+        <div class="form-row"><label style="width:80px">书名</label><input type="text" name="title" value="{{ book.title }}" style="flex:1"></div>
+        <div class="form-row"><label style="width:80px">作者</label><input type="text" name="author" value="{{ book.author }}" style="flex:1"></div>
+        <div class="form-row"><label style="width:80px">出版社</label><input type="text" name="publisher" value="{{ book.publisher }}" style="flex:1"></div>
+        <div class="form-row"><label style="width:80px">分类</label><select name="category"><option value="编程" {% if book.category=='编程' %}selected{% endif %}>编程</option><option value="文学" {% if book.category=='文学' %}selected{% endif %}>文学</option><option value="历史" {% if book.category=='历史' %}selected{% endif %}>历史</option><option value="科学" {% if book.category=='科学' %}selected{% endif %}>科学</option></select></div>
+        <div class="form-row"><button type="submit">保存修改</button><a href="/" class="btn btn-outline">取消</a></div>
+    </form>
+</div>
+{% endblock %}

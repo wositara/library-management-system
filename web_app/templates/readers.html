@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card">
+    <h2>👤 添加读者</h2>
+    <form action="/add_reader" method="post" class="form-row">
+        <input type="text" name="reader_id" placeholder="读者证号" required>
+        <input type="text" name="name" placeholder="姓名" required>
+        <select name="gender"><option>男</option><option>女</option><option>其他</option></select>
+        <input type="tel" name="phone" placeholder="电话">
+        <input type="email" name="email" placeholder="邮箱">
+        <input type="text" name="address" placeholder="地址">
+        <button type="submit">+ 添加读者</button>
+    </form>
+</div>
+
+<div class="card">
+    <h2>👥 读者列表</h2>
+    <div class="table-wrapper">
+        <table>
+            <thead><tr><th>证号</th><th>姓名</th><th>性别</th><th>电话</th><th>邮箱</th><th>地址</th><th>当前借阅</th><th>累计借阅</th><th>罚款</th><th>状态</th><th>操作</th></tr></thead>
+            <tbody>
+                {% for r in readers %}
+                <tr>
+                    <td>{{ r.reader_id }}</td><td><strong>{{ r.name }}</strong></td><td>{{ r.gender }}</td><td>{{ r.phone }}</td>
+                    <td>{{ r.email }}</td><td>{{ r.address }}</td><td>{{ r.borrowed_count }}</td><td>{{ r.total_borrow }}</td>
+                    <td class="{% if r.fine > 0 %}status borrowed{% endif %}">¥{{ "%.2f"|format(r.fine) }}</td>
+                    <td>{% if r.is_active %}<span class="status available">正常</span>{% else %}<span class="status borrowed">冻结</span>{% endif %}</td>
+                    <td><a href="/edit_reader/{{ r.reader_id }}" class="btn btn-sm btn-outline">编辑</a> <a href="/delete_reader/{{ r.reader_id }}" class="btn btn-sm btn-outline" onclick="return confirm('确定注销？')">注销</a> <a href="/reader_history/{{ r.reader_id }}" class="btn btn-sm btn-outline">历史</a></td>
+                </tr>
+                {% else %}
+                <tr><td colspan="11" class="empty">📭 暂无读者</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

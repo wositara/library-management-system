@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="stats-cards"><div class="stat-card"><div class="number">{{ borrowed_count }}</div><div class="label">当前借出</div></div></div>
+
+<div class="card"><h2>📖 借出图书</h2>
+    <form action="/borrow" method="post" class="form-row">
+        <input type="text" name="isbn" placeholder="图书ISBN" required>
+        <input type="text" name="reader_id" placeholder="读者证号" required>
+        <button type="submit">确认借出</button>
+    </form>
+</div>
+
+<div class="card"><h2>📚 归还图书</h2>
+    <form action="/return" method="post" class="form-row">
+        <input type="text" name="isbn" placeholder="图书ISBN" required>
+        <input type="text" name="reader_id" placeholder="读者证号" required>
+        <button type="submit">确认归还</button>
+    </form>
+</div>
+
+<div class="card"><h2>📋 当前借阅列表</h2>
+    <div class="table-wrapper">
+        <table>
+            <thead><tr><th>书名</th><th>作者</th><th>ISBN</th><th>借阅人</th><th>读者证号</th><th>借阅日期</th><th>应还日期</th><th>状态</th><th>操作</th></tr></thead>
+            <tbody>
+                {% for book in borrowed %}
+                <tr>
+                    <td><strong>{{ book.title }}</strong></td><td>{{ book.author }}</td><td><code>{{ book.isbn }}</code></td>
+                    <td>{{ book.borrower_name }}</td><td>{{ book.borrower_id }}</td><td>{{ book.borrow_date[:10] }}</td>
+                    <td class="{% if book.due_date < now %}status borrowed{% endif %}">{{ book.due_date }}</td>
+                    <td>{% if book.due_date < now %}<span class="status borrowed">逾期</span>{% else %}<span class="status available">正常</span>{% endif %}</td>
+                    <td><a href="/renew/{{ book.isbn }}/{{ book.borrower_id }}" class="btn btn-sm btn-outline">续借</a></td>
+                </tr>
+                {% else %}
+                <tr><td colspan="9" class="empty">📭 暂无借出图书</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

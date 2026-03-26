@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="stats-cards">
+    <div class="stat-card"><div class="number">{{ stats.total_books }}</div><div class="label">总藏书</div></div>
+    <div class="stat-card available"><div class="number">{{ stats.available_books }}</div><div class="label">可借阅</div></div>
+    <div class="stat-card borrowed"><div class="number">{{ stats.borrowed_books }}</div><div class="label">已借出</div></div>
+    <div class="stat-card"><div class="number">{{ stats.total_readers }}</div><div class="label">注册读者</div></div>
+    <div class="stat-card"><div class="number">{{ stats.active_readers }}</div><div class="label">活跃读者</div></div>
+    <div class="stat-card"><div class="number">¥{{ "%.2f"|format(stats.total_fine) }}</div><div class="label">未缴罚款</div></div>
+</div>
+
+<div class="card"><h2>📊 图书分类统计</h2>
+    <div class="table-wrapper"><table><thead><tr><th>分类</th><th>数量</th></tr></thead><tbody>
+        {% for cat, count in stats.category_stats.items() %}<tr><td>{{ cat }}</td><td>{{ count }} 册</td></tr>{% endfor %}
+    </tbody></table></div>
+</div>
+
+<div class="card"><h2>🏆 图书借阅排行榜</h2>
+    <div class="table-wrapper"><table><thead><tr><th>排名</th><th>书名</th><th>借阅次数</th></tr></thead><tbody>
+        {% for title, count in stats.top_books %}<tr><td>{{ loop.index }}</td><td><strong>{{ title }}</strong></td><td>{{ count }} 次</td></tr>{% endfor %}
+    </tbody></table></div>
+</div>
+
+<div class="card"><h2>👥 读者借阅排行榜</h2>
+    <div class="table-wrapper"><table><thead><tr><th>排名</th><th>姓名</th><th>借阅次数</th><th>罚款</th></tr></thead><tbody>
+        {% for r in stats.top_readers %}<tr><td>{{ loop.index }}</td><td><strong>{{ r.name }}</strong></td><td>{{ r.borrow_count }} 次</td><td>¥{{ "%.2f"|format(r.fine) }}</td></tr>{% endfor %}
+    </tbody></table></div>
+</div>
+{% endblock %}

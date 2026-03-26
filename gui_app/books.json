@@ -3,18 +3,36 @@
     "title": "Python编程入门",
     "author": "张三",
     "isbn": "978-7-121-12345-6",
-    "is_borrowed": false
+    "is_borrowed": false,
+    "borrower": null,
+    "borrow_date": null,
+    "category": "未分类"
   },
   {
     "title": "算法导论",
     "author": "李四",
     "isbn": "978-7-302-23456-7",
-    "is_borrowed": false
+    "is_borrowed": false,
+    "borrower": null,
+    "borrow_date": null,
+    "category": "未分类"
   },
   {
     "title": "数据结构",
     "author": "王五",
     "isbn": "978-7-111-34567-8",
-    "is_borrowed": false
+    "is_borrowed": false,
+    "borrower": null,
+    "borrow_date": null,
+    "category": "未分类"
+  },
+  {
+    "title": "计算机操作系统",
+    "author": "汤小丹",
+    "isbn": "978-7-222-56789-9",
+    "is_borrowed": false,
+    "borrower": null,
+    "borrow_date": null,
+    "category": "编程"
   }
 ]

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card">
+    <h2>📖 {{ reader.name }} 的借阅历史</h2>
+    <p>读者证号：{{ reader.reader_id }} | 累计借阅：{{ reader.total_borrow }} 次 | 当前借阅：{{ reader.borrowed_count }} 本 | 罚款：¥{{ "%.2f"|format(reader.fine) }}</p>
+    <div class="table-wrapper">
+        <table>
+            <thead><tr><th>书名</th><th>ISBN</th><th>借阅日期</th><th>应还日期</th><th>归还日期</th><th>罚款</th></tr></thead>
+            <tbody>
+                {% for record in history %}
+                <tr>
+                    <td><strong>{{ record.title }}</strong></td><td><code>{{ record.isbn }}</code></td>
+                    <td>{{ record.borrow_date[:10] }}</td><td>{{ record.due_date }}</td>
+                    <td>{{ record.return_date[:10] if record.return_date else "在借" }}</td>
+                    <td class="{% if record.fine > 0 %}status borrowed{% endif %}">¥{{ "%.2f"|format(record.fine) }}</td>
+                </tr>
+                {% else %}
+                <tr><td colspan="6" class="empty">📭 暂无借阅记录</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <p><a href="/readers" class="btn btn-outline">← 返回读者列表</a></p>
+</div>
+{% endblock %}

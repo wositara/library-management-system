@@ -1,0 +1,102 @@
+{
+  "books": [
+    {
+      "title": "Python编程从入门到实践",
+      "author": "Eric Matthes",
+      "isbn": "978-7-121-12345-6",
+      "is_borrowed": false,
+      "borrower": null,
+      "borrower_id": null,
+      "borrow_date": null,
+      "due_date": null,
+      "category": "编程",
+      "borrow_history": []
+    },
+    {
+      "title": "算法导论",
+      "author": "Thomas H. Cormen",
+      "isbn": "978-7-302-23456-7",
+      "is_borrowed": false,
+      "borrower": null,
+      "borrower_id": null,
+      "borrow_date": null,
+      "due_date": null,
+      "category": "算法",
+      "borrow_history": []
+    },
+    {
+      "title": "数据结构与算法",
+      "author": "Robert Sedgewick",
+      "isbn": "978-7-111-34567-8",
+      "is_borrowed": false,
+      "borrower": null,
+      "borrower_id": null,
+      "borrow_date": null,
+      "due_date": null,
+      "category": "编程",
+      "borrow_history": []
+    },
+    {
+      "title": "流畅的Python",
+      "author": "Luciano Ramalho",
+      "isbn": "978-7-115-45678-9",
+      "is_borrowed": false,
+      "borrower": null,
+      "borrower_id": null,
+      "borrow_date": null,
+      "due_date": null,
+      "category": "编程",
+      "borrow_history": []
+    },
+    {
+      "title": "深度学习",
+      "author": "Ian Goodfellow",
+      "isbn": "978-7-302-56789-0",
+      "is_borrowed": false,
+      "borrower": null,
+      "borrower_id": null,
+      "borrow_date": null,
+      "due_date": null,
+      "category": "AI",
+      "borrow_history": []
+    }
+  ],
+  "readers": [
+    {
+      "reader_id": "20240001",
+      "name": "张三",
+      "phone": "13800138001",
+      "email": "zhangsan@example.com",
+      "borrowed_books": [],
+      "borrow_history": [],
+      "points": 100,
+      "join_date": "2026-03-26",
+      "is_active": true,
+      "password": "123456"
+    },
+    {
+      "reader_id": "20240002",
+      "name": "李四",
+      "phone": "13800138002",
+      "email": "lisi@example.com",
+      "borrowed_books": [],
+      "borrow_history": [],
+      "points": 100,
+      "join_date": "2026-03-26",
+      "is_active": true,
+      "password": "123456"
+    },
+    {
+      "reader_id": "20240003",
+      "name": "王五",
+      "phone": "13800138003",
+      "email": "wangwu@example.com",
+      "borrowed_books": [],
+      "borrow_history": [],
+      "points": 100,
+      "join_date": "2026-03-26",
+      "is_active": true,
+      "password": "123456"
+    }
+  ]
+}
